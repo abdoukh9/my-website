@@ -1,0 +1,99 @@
+let products = JSON.parse(localStorage.getItem("products")) || [];
+let cart = [];
+let currentLang = "en";
+
+const translations = {
+  en: {
+    title: "bibostor",
+    cart: "Cart",
+    add: "Add to Cart",
+    checkout: "Card Payment",
+    pay: "Pay Now"
+  },
+  fr: {
+    title: "bibostor",
+    cart: "Panier",
+    add: "Ajouter",
+    checkout: "Paiement par carte",
+    pay: "Payer"
+  },
+  es: {
+    title: "bibostor",
+    cart: "Carrito",
+    add: "Agregar",
+    checkout: "Pago con tarjeta",
+    pay: "Pagar"
+  },
+  ar: {
+    title: "بيبوسطور",
+    cart: "السلة",
+    add: "أضف للسلة",
+    checkout: "الدفع بالبطاقة",
+    pay: "ادفع الآن"
+  }
+};
+
+function renderProducts() {
+  const container = document.getElementById("products");
+  container.innerHTML = "";
+
+  products.forEach((p, index) => {
+    container.innerHTML += `
+      <div class="product">
+        <img src="${p.image}">
+        <h3>${p.name}</h3>
+        <p>$${p.price}</p>
+        <button onclick="addToCart(${index})">
+          ${translations[currentLang].add}
+        </button>
+      </div>
+    `;
+  });
+}
+
+function addProduct() {
+  const name = document.getElementById("name").value;
+  const price = document.getElementById("price").value;
+  const image = document.getElementById("image").value || "https://via.placeholder.com/300";
+
+  if (!name || !price) return alert("Fill all fields");
+
+  products.push({ name, price, image });
+  localStorage.setItem("products", JSON.stringify(products));
+  renderProducts();
+}
+
+function addToCart(index) {
+  cart.push(products[index]);
+  document.getElementById("cartCount").innerText = cart.length;
+}
+
+function openCheckout() {
+  if (!cart.length) return alert("Cart is empty");
+  document.getElementById("checkout").style.display = "flex";
+}
+
+function closeCheckout() {
+  document.getElementById("checkout").style.display = "none";
+}
+
+function payNow() {
+  alert("Payment successful ✅");
+  cart = [];
+  document.getElementById("cartCount").innerText = 0;
+  closeCheckout();
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.getElementById("title").innerText = translations[lang].title;
+  document.getElementById("cartText").innerText = translations[lang].cart;
+  document.getElementById("checkoutTitle").innerText = translations[lang].checkout;
+  document.getElementById("payBtn").innerText = translations[lang].pay;
+
+  renderProducts();
+}
+
+renderProducts();

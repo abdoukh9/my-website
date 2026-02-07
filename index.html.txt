@@ -1,0 +1,13 @@
+<header>
+  <div class="logo">bs</div>
+  <h1 id="title">bibostor</h1>
+
+  <select id="languageSwitcher" onchange="changeLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="fr">Français</option>
+    <option value="es">Español</option>
+    <option value="ar">العربية</option>
+  </select>
+
+  <button onclick="openCheckout()">💳 <span id="cartText">Cart</span> (<span id="cartCount">0</span>)</button>
+</header>

@@ -1,0 +1,46 @@
+select {
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.checkout {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 300px;
+  position: relative;
+}
+
+.checkout-box input {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+}
+
+.checkout-box button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+.checkout-box .close {
+  background: #ef4444;
+}
+
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}

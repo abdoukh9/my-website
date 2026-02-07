@@ -1,0 +1,13 @@
+<div class="checkout" id="checkout">
+  <div class="checkout-box">
+    <h2 id="checkoutTitle">Card Payment</h2>
+
+    <input type="text" placeholder="Card Number">
+    <input type="text" placeholder="Card Holder Name">
+    <input type="text" placeholder="MM / YY">
+    <input type="text" placeholder="CVC">
+
+    <button onclick="payNow()" id="payBtn">Pay Now</button>
+    <button onclick="closeCheckout()" class="close">✖</button>
+  </div>
+</div>
